@@ -23,11 +23,11 @@ class Player extends GameObject {
     }
 
     moveLeft() {
-        this.x -= this.speed;
+        this.x -= this.speed *5;
     }
 
     moveRight() {
-        this.x += this.speed;
+        this.x += this.speed *5;
     }
 }
 
@@ -110,10 +110,10 @@ function update() {
         }
     });
 
-    ctx.font = '16px Arial';
+    ctx.font = '26px Arial';
     ctx.fillStyle = 'white';
-    ctx.fillText(`Score: ${score}`, 10, 20);
-    ctx.fillText(`Lives: ${lives}`, canvas.width - 80, 20);
+    ctx.fillText(`Score: ${score}`, 10, 30);
+    ctx.fillText(`Lives: ${lives}`, canvas.width - 100, 30);
 
     requestAnimationFrame(update);
 }
@@ -142,15 +142,25 @@ document.addEventListener('keydown', (event) => {
         bullets.push(new Bullet(player.x + player.width / 2 - 2.5, player.y, 5, 10, 'white'));
     }
 });
+
+
+document.addEventListener('click', () => {
+    
+        bullets.push(new Bullet(player.x + player.width / 2 - 2.5, player.y, 5, 10, 'white'));
+    
+});
+
 let score = 0;
 let lives = 3;
 
 update();
 
+
+
 document.addEventListener('keydown', (event) => {
-    if (event.code === 'ArrowLeft') {
+    if (event.code === 'ArrowLeft' || event.code === 'KeyA') {
         player.moveLeft();
-    } else if (event.code === 'ArrowRight') {
+    } else if (event.code === 'ArrowRight' || event.code === 'KeyD') {
         player.moveRight();
     }
 });
